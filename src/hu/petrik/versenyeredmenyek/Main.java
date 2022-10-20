@@ -16,11 +16,28 @@ public class Main {
             beolvas(fajlNev);
             kiiras();
             System.out.println("Sportagak szama: "+ getSportagakSzama());
+            System.out.printf("Az olimpián %d versenyző vett részt\n",getVersenyzokSzama());
         } catch (FileNotFoundException e) {
             System.out.printf("Nem található a fájl: %s", fajlNev);
         }
 
 
+    }
+
+    private static int getVersenyzokSzama() {
+        //ismetlodes elleni lista.
+        List<String> versenyzok = new ArrayList<>();
+        //entry set = a keyekhez rendelt faszomok listaja.
+        for (Map.Entry<String, List<Eredmeny>> entry: sportagEredmenyek.entrySet()) {
+            List<Eredmeny> eredmenyek = entry.getValue();
+            for (Eredmeny e : eredmenyek) {
+                if (!versenyzok.contains(e.getNev())){
+                    versenyzok.add(e.getNev());
+                }
+            }
+        }
+
+        return versenyzok.size();
     }
 
     private static void kiiras() {
