@@ -15,6 +15,7 @@ public class Main {
         try {
             beolvas(fajlNev);
             kiiras();
+            System.out.println("Sportagak szama: "+ getSportagakSzama());
         } catch (FileNotFoundException e) {
             System.out.printf("Nem található a fájl: %s", fajlNev);
         }
@@ -38,6 +39,12 @@ public class Main {
 
 
     }
+
+    private static int getSportagakSzama() {
+        //a sportagak amikhez a versenyzok vannak rendelve a kulcsok, ennek le lehet kerni konnyen a szamat.
+       return sportagEredmenyek.keySet().size();
+    }
+
 
     private static void beolvas(String FajlNev) throws FileNotFoundException {
             Scanner file = new Scanner(new File(FajlNev));
